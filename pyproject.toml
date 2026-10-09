@@ -1,0 +1,49 @@
+[project]
+name = "lup"
+version = "0.1.0"
+description = "Shared utilities for research: HF model loading, hooks, reproducibility and plotting."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["interpretability", "mechanistic-interpretability", "transformers", "pytorch"]
+authors = [
+    { name = "Jeremy Herbst", email = "jeremy.herbst@di.ku.dk" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "accelerate>=1.15.0",
+    "torch>=2.14.1",
+    "transformers>=5.19.0",
+]
+
+[project.optional-dependencies]
+plot = [
+    "matplotlib>=3.11.2",
+]
+
+[project.urls]
+Repository = "https://github.com/jerryy33/lup"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "matplotlib>=3.11.2",
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["lup"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["gpu: needs a CUDA GPU and the gpt2 weights"]
